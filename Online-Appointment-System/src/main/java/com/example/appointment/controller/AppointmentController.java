@@ -3,10 +3,6 @@ package com.example.appointment.controller;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.view.ViewScoped;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import com.example.appointment.entity.Appointment;
 import com.example.appointment.service.AppointmentService;

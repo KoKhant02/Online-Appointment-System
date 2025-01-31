@@ -1,13 +1,13 @@
-package com.example.appointment.entity;
+package com.example.appointment.dto;
 
 import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class Appointment {
-    private Long id;
-    private String patientName;
-    private LocalDateTime appointmentTime;
+public class AppointmentDTO {
+    public AppointmentDTO(Long id2, String patientName2, LocalDateTime appointmentTime2) {
+		// TODO Auto-generated constructor stub
+	}
 	public Long getId() {
 		return id;
 	}
@@ -26,4 +26,7 @@ public class Appointment {
 	public void setAppointmentTime(LocalDateTime appointmentTime) {
 		this.appointmentTime = appointmentTime;
 	}
+	private Long id;
+    private String patientName;
+    private LocalDateTime appointmentTime;
 }

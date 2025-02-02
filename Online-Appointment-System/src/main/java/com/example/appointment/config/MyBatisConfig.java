@@ -2,6 +2,7 @@ package com.example.appointment.config;
 
 import javax.sql.DataSource;
 
+import org.apache.ibatis.datasource.pooled.PooledDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -9,10 +10,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan(basePackages = "com.example.appointment.mapper", sqlSessionFactoryRef = "sqlSessionFactory")
+@MapperScan("com.example.appointment.mapper")
 public class MyBatisConfig {
 
-    
+    @Bean
+    public DataSource dataSource() {
+        return new PooledDataSource(
+                "org.postgresql.Driver",
+                "jdbc:postgresql://localhost:5432/oms",
+                "postgres",
+                "root"
+        );
+    }
+
     @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();

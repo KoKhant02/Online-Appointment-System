@@ -7,21 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.appointment.dto.AppointmentDTO;
+import com.example.appointment.entity.Appointment;
 import com.example.appointment.service.AppointmentService;
 
-
 @RestController
-@RequestMapping("/api/appointments")
+@RequestMapping("/appointments")
 public class AppointmentController {
-	@Autowired
-    private final AppointmentService service;
+    @Autowired
+    private AppointmentService appointmentService;
 
-public AppointmentController(AppointmentService service) {
-    this.service = service;
-}
     @GetMapping
-    public List<AppointmentDTO> getAllAppointments() {
-        return service.getAllAppointments();
+    public List<Appointment> getAllAppointments() {
+        return appointmentService.getAllAppointments();
     }
 }

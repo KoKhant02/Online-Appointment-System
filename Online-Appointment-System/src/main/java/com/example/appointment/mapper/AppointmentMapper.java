@@ -10,9 +10,9 @@ import com.example.appointment.entity.Appointment;
 
 @Mapper
 public interface AppointmentMapper {
-    @Select("SELECT * FROM appointments")
-    List<Appointment> findAll();
-
-    @Insert("INSERT INTO appointments(patient_name, appointment_time) VALUES(#{patientName}, #{appointmentTime})")
+    @Insert("INSERT INTO appointment(patient_name, doctor_name, appointment_date, status) VALUES (#{patientName}, #{doctorName}, #{appointmentDate}, #{status})")
     void insert(Appointment appointment);
+
+    @Select("SELECT * FROM appointment")
+    List<Appointment> findAll();
 }

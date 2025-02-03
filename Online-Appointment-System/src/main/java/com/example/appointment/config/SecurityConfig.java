@@ -12,19 +12,19 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/admin/**").authenticated()
-                        .requestMatchers("/login", "/register").permitAll()
-                )
-                .formLogin(login -> login
-                        .loginPage("/login.xhtml")
-                        .defaultSuccessUrl("/admin-dashboard.xhtml", true)
-                )
-                .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login.xhtml")
-                );
+        http.csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/login.xhtml").permitAll()  
+                .requestMatchers("/admin/**").authenticated() 
+            )
+            .formLogin(login -> login
+                .loginPage("/login.xhtml")  // Specify login page
+                .defaultSuccessUrl("/admin-dashboard.xhtml", true)  // Redirect to dashboard after login
+            )
+            .logout(logout -> logout
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login.xhtml")
+            );
 
         return http.build();
     }
@@ -34,3 +34,4 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 }
+

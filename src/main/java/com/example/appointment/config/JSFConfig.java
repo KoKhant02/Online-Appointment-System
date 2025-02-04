@@ -16,7 +16,7 @@ public class JSFConfig {
     @Bean
     public InternalResourceViewResolver jsfViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/webapp/"); 
+        resolver.setPrefix("/");  // Corrected prefix
         resolver.setSuffix(".xhtml");
         return resolver;
     }

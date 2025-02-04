@@ -1,20 +1,30 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Login</title>
-    </h:head>
-    <h:body>
-        <h:form>
-            <h:outputLabel for="username" value="Username: " />
-            <h:inputText id="username" value="#{loginBean.username}" required="true" />
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="javax.faces.component.html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="javax.faces.facelets">  <!-- Add the f namespace here -->
+<h:head>
+    <title>OMS Login Page</title>
+</h:head>
+<h:body>
+    <h:form id="loginForm">
+        <p:login id="login" 
+                 username="#{loginBean.username}" 
+                 password="#{loginBean.password}" 
+                 title="Online Appointment System"
+                 mode="advanced"
+                 showRememberMe="false"
+                 rememberMe="#{loginBean.rememberMe}"
+                 onloginerror="loginError()">
+            <f:facet name="header">
+                <h:outputText value="Login" />
+            </f:facet>
+            <f:facet name="footer">
+                <p:commandButton value="Login" action="#{loginBean.login}" ajax="true" update="messages" />
+            </f:facet>
+        </p:login>
 
-            <h:outputLabel for="password" value="Password: " />
-            <h:inputSecret id="password" value="#{loginBean.password}" required="true" />
-
-            <h:commandButton value="Login" action="#{loginBean.login}" />
-
-            <h:messages globalOnly="true" />
-
-        </h:form>
-    </h:body>
+        <p:messages id="messages" showDetail="true" autoUpdate="true" />
+    </h:form>
+</h:body>
 </html>

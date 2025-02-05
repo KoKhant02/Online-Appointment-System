@@ -1,100 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-                             http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-         version="3.0">
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                             https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+
 
     <display-name>Online Appointment System</display-name>
 
-    <!-- FacesServlet for JSF -->
+    <context-param>
+        <param-name>jakarta.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+
     <servlet>
-        <servlet-name>Faces Servlet</servlet-name>
-        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.xhtml</url-pattern>
-    </servlet-mapping>
-
-    <context-param>
-        <param-name>com.sun.faces.numberOfViewsInSession</param-name>
-        <param-value>5</param-value>
-    </context-param>
-    <context-param>
-    	<param-name>com.sun.faces.serializeServerState</param-name>
-    	<param-value>false</param-value>
-    </context-param>
-    <context-param>
-        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
-        <param-value>server</param-value>
-    </context-param>
-    <context-param>
-        <param-name>javax.faces.PROJECT_STAGE</param-name>
-        <param-value>Development</param-value> <!-- Set to Development or Production -->
-    </context-param>
-    <context-param>
-        <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    <context-param>
-        <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
-        <param-value>true</param-value>
-    </context-param>
-
-    <!-- PrimeFaces settings -->
-    <context-param>
-        <param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
-        <param-value>6Lf2XQkTAAAAAHsc1-7Mt_kMlmcmGqlxoMDJlp2K</param-value>
-    </context-param>
-    <context-param>
-        <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
-        <param-value>6Lf2XQkTAAAAANcvOwYqPxWL4iZDksFqHpS39GDA</param-value>
-    </context-param>
-
-    <context-param>
-        <param-name>primefaces.CLIENT_SIDE_VALIDATION</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    <context-param>
-        <param-name>primefaces.THEME</param-name>
-        <param-value>#{guestPreferences.theme}</param-value>
-    </context-param>
-        <context-param>
-        <param-name>primefaces.FONT_AWESOME</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    <context-param>
-        <param-name>primefaces.MOVE_SCRIPTS_TO_BOTTOM</param-name>
-        <param-value>true</param-value>
-    </context-param>
-
-    <!-- Spring Boot listener (if you're integrating Spring Boot with JSF) -->
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-    <listener>
-        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
-    </listener>
-    <!-- Spring Boot dispatcher servlet -->
-    <servlet>
-        <servlet-name>dispatcherServlet</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <servlet-name>FacesServlet</servlet-name>
+        <servlet-class>jakarta.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>dispatcherServlet</servlet-name>
-        <url-pattern>/</url-pattern> <!-- Maps Spring Boot routes -->
-    </servlet-mapping>
-
-    <listener>
-        <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
-    </listener>
+        <servlet-name>FacesServlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>  </servlet-mapping>
 
     <welcome-file-list>
-    <welcome-file>/login.xhtml</welcome-file>
-</welcome-file-list>
+        <welcome-file>faces/login.xhtml</welcome-file>
+    </welcome-file-list>
 
 </web-app>

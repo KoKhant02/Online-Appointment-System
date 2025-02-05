@@ -16,18 +16,18 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
             .authorizeHttpRequests()
-                .requestMatchers("/login.xhtml", "/").permitAll()  
-                .requestMatchers("/admin-dashboard.xhtml", "/appointment-list.xhtml").authenticated()
+                .requestMatchers("/faces/login.xhtml", "/faces/").permitAll()  // Allow public access to login and home pages
+                .requestMatchers("/faces/admin-dashboard.xhtml", "/faces/appointment-list.xhtml").authenticated()  // Require authentication for these pages
             .and()
             .formLogin()
-                .loginPage("/login.xhtml") 
+                .loginPage("/faces/login.xhtml")  // Specify the login page within the faces directory
                 .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/admin-dashboard.xhtml", true)
-                .failureUrl("/login.xhtml?error=true") 
+                .defaultSuccessUrl("/faces/admin-dashboard.xhtml", true)  // Redirect to the admin dashboard after successful login
+                .failureUrl("/faces/login.xhtml?error=true")  // Redirect to login with an error if authentication fails
             .and()
             .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/login.xhtml"); 
+                .logoutSuccessUrl("/faces/login.xhtml");  // Redirect to login page after logout
         
         return http.build();
     }
